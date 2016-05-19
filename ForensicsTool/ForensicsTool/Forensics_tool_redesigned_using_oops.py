@@ -1,4 +1,4 @@
-import os, colorama, random_functions, module1, module2, module3, module4, module5
+import os, colorama, random_functions, module1, module2, module3, module4, module5, module6, module7
 
 
 class Main1(random_functions.random_functions_class): 
@@ -16,18 +16,24 @@ class Main1(random_functions.random_functions_class):
             print "3. File Hashing"
             print "4. JPEG Forensics"
             print "5. Browser Forensics"
+            print "6. Sataganography"
+            print "7. Port Scanner"
             
             self.m1 = module1.Registry_Forensics_module1()
             self.m2 = module2.event_manager_module()
             self.m3 = module3.File_hashing_class()
             self.m4 = module4.Jpeg_forensics_class()
             self.m5 = module5.Browser_forensics_class()
+            self.m6 = module6.Staganography_class()
+            self.m7 = module7.Port_Scanner_class()
 
             options_to_be_presented = [self.m1.module1, 
                                        self.m2.module2, 
                                        self.m3.module3, 
                                        self.m4.module4, 
-                                       self.m5.module5]
+                                       self.m5.module5,
+                                       self.m6.module6,
+                                       self.m7.module7]
             self.seperator()
             choice = int(raw_input("Enter Choice : "))-1
             print colorama.ansi.clear_screen(2)    

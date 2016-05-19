@@ -5,8 +5,7 @@ from xml.dom import minidom
 
 #module2 - event manager module
 
-class event_manager_module( random_functions.random_functions_class):
-    
+class event_manager_module( random_functions.random_functions_class):    
     def module2(self):
         try:
             self.seperator()
@@ -56,7 +55,7 @@ class event_manager_module( random_functions.random_functions_class):
         file_rec = open("rec.txt", "w")
         i=0
 
-        def spinning_cursor(self):
+        def spinning_cursor():
             while True:
                 for cursor in '|/-\\':
                     yield cursor
@@ -78,7 +77,7 @@ class event_manager_module( random_functions.random_functions_class):
     
                 i = 0
                 if no_of_records == "":
-                    no_of_records = 10
+                    no_of_records = 100
 
                 for xml, record in Evtx.Views.evtx_file_xml_view(fh):            
                     #print xml
@@ -97,7 +96,7 @@ class event_manager_module( random_functions.random_functions_class):
                         sys.stdout.write(spinner.next())
                         sys.stdout.flush()
                         sys.stdout.write('\b')
-                        #file_rec.write(str(record)+"\n")         
+                        file_rec.write(str(record)+"\n")         
                         i=i+1
                     else:
                         break
@@ -110,7 +109,7 @@ class event_manager_module( random_functions.random_functions_class):
     def login_analyzer(self):
         #xml events analyzer
         self.seperator()
-        print "Login Analyzer"
+        print "Login Analyzer - event ID 4624"
         self.seperator()
         xmldoc = xml.dom.minidom.parse("logs.xml")
         flag = 0
@@ -146,7 +145,7 @@ class event_manager_module( random_functions.random_functions_class):
                         print "Invald Logon Type"
                 i=i+1
         except Exception as e:
-            print e
+            print
 
         self.seperator()
         print "\nLogins Chart\n"

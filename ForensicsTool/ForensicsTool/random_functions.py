@@ -1,5 +1,26 @@
 from __future__ import print_function
-import os, colorama, random
+import os, colorama, random, reportlab
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont   
+from reportlab.lib import styles
+from reportlab.lib.pagesizes import A4, letter
+from reportlab.platypus import (
+    BaseDocTemplate, 
+    PageTemplate, 
+    Frame, 
+    Paragraph,
+    PageBreak
+)
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_CENTER
+from reportlab.lib.colors import (
+    black,
+    purple,
+    white,
+    yellow
+)
+
 
 class random_functions_class():
     def __init__(self):
@@ -34,12 +55,12 @@ class random_functions_class():
     def seperator(self):
         dim = self.get_linux_terminal() if os.name == 'posix' else self.get_windows_terminal()
         for i in range(int(dim[0])):
-            print (colorama.Fore.RED  + "-", end = "")
+            print (colorama.Fore.GREEN  + "-", end = "")
 
     #logo
 
     def logo(self):
-        print (colorama.Fore.RED + """
+        print (colorama.Fore.GREEN + """
       ______                       _            _______          _ 
      |  ____|                     (_)          |__   __|        | |
      | |__ ___  _ __ ___ _ __  ___ _  ___ ___     | | ___   ___ | |
@@ -51,7 +72,7 @@ class random_functions_class():
     #module chooser function
     def default_func(self):
         #default run
-        print (colorama.Back.RED + "\nOption Not Recognized\n")
+        print (colorama.Back.GREEN + "\nOption Not Recognized\n")
 
     def choice_logic(self, options_list, choice):
               
@@ -62,3 +83,27 @@ class random_functions_class():
             self.options_dict.get(int(choice), self.default_func)()
         except Exception as e:
             print (e)
+
+    def report_generator(self, file_name, file_heading, file_content):
+        self.seperator()
+        if not os.path.exists("Files_to_be_hashed"):
+            os.mkdir("Files_to_be_hashed")
+        print ("Report Generator Started")        
+        c = canvas.Canvas("Files_to_be_hashed"+"\\"+file_name, pagesize = letter)
+        c.setFont("Helvetica", 20)
+        c.drawCentredString(300, 750, "Report : "+str(file_heading))
+        c.setFontSize(10)
+        h = 700
+        for item in file_content:
+            i = file_content.index(item)   
+            item = unicode(item, 'utf-8', 'ignore')
+            h = h -20
+            c.drawString(50, h , str(i+1)+" : "+str(item)) 
+            if h < 100:
+                c.showPage()  
+                h = 700  
+                c.setFontSize(10)      
+        
+        c.save()
+        self.seperator()
+        print ("Report Generation Finished")

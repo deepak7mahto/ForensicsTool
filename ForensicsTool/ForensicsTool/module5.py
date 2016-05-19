@@ -194,7 +194,7 @@ class Browser_forensics_class(random_functions.random_functions_class):
         print colorama.ansi.clear_screen(2)    
         self.choice_logic(options_to_be_presented, choice)
         self.seperator()
-        module5()
+        self.module5()
 
     def firefox_generic_data_viewer(self):
         self.seperator()

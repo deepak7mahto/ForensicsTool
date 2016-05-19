@@ -4,16 +4,14 @@ import random_functions, hashlib, os, Forensics_tool_redesigned_using_oops
 
 class File_hashing_class( random_functions.random_functions_class):
 
-    def __init__(self):
-        print
-
+    
     def module3(self):
         try:
             self.seperator()
             print "File Hashing"
             self.seperator()
             print "\nSecuring Evidences \n"
-            print "1. Generate Hashes\n2. Compare Hashes"
+            print "1. Generate Hashes\n2. Compare Hashes\n"
             choice = int(raw_input("\nEnter Choice : "))
 
             if "nt" in os.name:
@@ -37,7 +35,14 @@ class File_hashing_class( random_functions.random_functions_class):
         except Exception as e:
             pass
 
+    def collect_files(self):
+        print "Collecting Files"
+        if not os.path.exists("Files_to_be_hashed"):
+            os.mkdir("Files_to_be_hashed")
+        print ""
+
     def hash_genertion(self):
+        data_list = list()
         print "\nGenerate Hashes"
     
         if not os.path.exists("Files_to_be_hashed"):
@@ -84,7 +89,7 @@ class File_hashing_class( random_functions.random_functions_class):
                 print str(int(files.index(name))+1)+" : "+(os.path.basename(name))
         print "\n"+str(temp_file_array)
         file_choice = int(raw_input("\nEnter Choice : "))
-        file_choice_name = temp_file_array[dir_choice-1]
+        file_choice_name = temp_file_array[file_choice-1]
         print "You Selected file : "+file_choice_name
         user_hash = str(raw_input("\nEnter MD5 HASH : \n"))
 
