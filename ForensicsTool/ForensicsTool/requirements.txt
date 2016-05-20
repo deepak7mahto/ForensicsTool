@@ -1,0 +1,4 @@
+colorama == 0.3.7
+ExifRead == 2.1.2
+Pillow == 3.2.0
+python-evtx
